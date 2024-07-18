@@ -1,4 +1,3 @@
-import { ArrowRight, UserRoundPlus } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InviteGuestsModal } from "./invite-guests-modal";
@@ -71,6 +70,9 @@ export function CreateTripPage() {
     function sucessNotify() {
       toast.success("Viagem criada com sucesso!");
     }
+    function errorNotify() {
+      toast.error("Erro ao criar viagem! Verifique os dados e tente novamente.");
+    }
     event.preventDefault();
 
     if (!destination) {
@@ -84,18 +86,23 @@ export function CreateTripPage() {
     }
     if (!ownerEmail || !ownerName) {
     }
-    const response = await api.post("/trips", {
-      destination,
-      starts_at: eventsStartAndEndDates.from,
-      ends_at: eventsStartAndEndDates.to,
-      emails_to_invite: emailsToInvite,
-      owner_name: ownerName,
-      owner_email: ownerEmail,
-    });
+try{
+  const response = await api.post("/trips", {
+    destination,
+    starts_at: eventsStartAndEndDates.from,
+    ends_at: eventsStartAndEndDates.to,
+    emails_to_invite: emailsToInvite,
+    owner_name: ownerName,
+    owner_email: ownerEmail,
+  });
+  const { tripId } = response.data;
+  navigate(`/trips/${tripId}`);
+  sucessNotify();
+}catch(error){
+  errorNotify()
+}
 
-    const { tripId } = response.data;
-    navigate(`/trips/${tripId}`);
-    sucessNotify();
+
   }
 
   return (

@@ -5,10 +5,20 @@ import { ImportantLinks } from "./important-links";
 import { Guests } from "./guests";
 import { Activities } from "./activities";
 import { DestinationAndDateHeader } from "./destination-and-date-header";
+import { CreateImportantLinkModal } from "./create-important-links-modal";
+import { Button } from "../../components/button";
 
 export function TripDetailsPage() {
   const [isCreateActivityModalOpen, setCreateActivityModalOpen] =
     useState(false);
+    const [isCreateImportantLinkModal, setCreateImportantLinkModal]= useState(false)
+
+    function openCreateImportantLinkModal() {
+      setCreateImportantLinkModal(true);
+    }
+    function closeCreateImportantLinkModal() {
+      setCreateImportantLinkModal(false);
+    }
 
   function openCreateActivityModalOpen() {
     setCreateActivityModalOpen(true);
@@ -16,6 +26,7 @@ export function TripDetailsPage() {
   function closeCreateActivityModalOpen() {
     setCreateActivityModalOpen(false);
   }
+
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
       <DestinationAndDateHeader />
@@ -31,12 +42,16 @@ export function TripDetailsPage() {
               Cadastrar atividade
             </button>
           </div>
-
           <Activities />
         </div>
         <div className="w-80 space-y-6">
-          <ImportantLinks />
-
+        <h2 className="font-semibold text-xl">Links importantes </h2>
+          <ImportantLinks
+             />
+        <Button onClick={openCreateImportantLinkModal} variant="secondary" size="full">
+         <Plus className="size-5" />
+         Cadastrar novo link
+       </Button>
           <div className="w-full h-px bg-zinc-800" />
           <Guests />
         </div>
@@ -44,6 +59,12 @@ export function TripDetailsPage() {
       {isCreateActivityModalOpen && (
         <CreateActivityModal
           closeCreateActivityModalOpen={closeCreateActivityModalOpen}
+        />
+      )}
+        {isCreateImportantLinkModal &&(
+        <CreateImportantLinkModal
+        closeCreateImportantLinkModal ={closeCreateImportantLinkModal}
+       
         />
       )}
     </div>

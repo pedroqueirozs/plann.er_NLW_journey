@@ -16,12 +16,12 @@ interface Activity {
 export function Activities() {
   const { tripId } = useParams();
   const [activities, setActivities] = useState<Activity[]>([]);
-
   useEffect(() => {
     api
       .get(`/trips/${tripId}/activities`)
       .then((response) => setActivities(response.data.activities));
   }, [tripId]);
+  
 
   return (
     <div className="space-y-8">
@@ -60,6 +60,7 @@ export function Activities() {
           </div>
         );
       })}
+ 
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { User, X } from "lucide-react";
+import { User, X, Mail } from "lucide-react";
 import { FormEvent } from "react";
 import { Button } from "../../components/button";
 import { DateRange } from "react-day-picker";
@@ -67,7 +67,7 @@ export function ConfirmTripModal({
           </div>
 
           <div className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
-            <User className="text-zinc-400 size-5" />
+            <Mail className="text-zinc-400 size-5" />
             <input
               onChange={(event) => setOwnerEmail(event.target.value)}
               type="email"

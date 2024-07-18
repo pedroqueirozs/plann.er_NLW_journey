@@ -18,18 +18,25 @@ export function CreateActivityModal({
     function successNotification() {
       toast.success("Atividade criada com sucesso!");
     }
+    function errorNotification() {
+      toast.error("Erro ao criar atividade! Verifique os dados e tente novamente.");
+    }
 
     const data = new FormData(event.currentTarget);
 
     const title = data.get("title")?.toString();
     const occurs_at = data.get("occurs-at")?.toString();
+try {await api.post(`/trips/${tripId}/activities`, {
+  title,
+  occurs_at,
+});
+window.location.reload();
+successNotification();}
+catch(error){
+  errorNotification()
+}
 
-    await api.post(`/trips/${tripId}/activities`, {
-      title,
-      occurs_at,
-    });
-    window.location.reload();
-    successNotification();
+    
   }
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
