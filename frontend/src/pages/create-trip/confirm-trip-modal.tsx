@@ -3,8 +3,7 @@ import { FormEvent } from "react";
 import { Button } from "../../components/button";
 import { DateRange } from "react-day-picker";
 import { format } from "date-fns";
-import {ptBR} from "date-fns/locale"
-
+import { ptBR } from "date-fns/locale";
 
 interface ConfirmTripModalProps {
   closeConfirmTripModal: () => void;
@@ -12,8 +11,7 @@ interface ConfirmTripModalProps {
   setOwnerName: (name: string) => void;
   setOwnerEmail: (email: string) => void;
   eventsStartAndEndDates: DateRange | undefined;
-  destination:string
-
+  destination: string;
 }
 
 export function ConfirmTripModal({
@@ -22,17 +20,16 @@ export function ConfirmTripModal({
   setOwnerName,
   setOwnerEmail,
   eventsStartAndEndDates,
-  destination
+  destination,
 }: ConfirmTripModalProps) {
+  const startDate = eventsStartAndEndDates?.from?.toISOString();
+  const endDate = eventsStartAndEndDates?.to?.toISOString();
 
-  const startDate = eventsStartAndEndDates?.from?.toISOString()
-  const endDate = eventsStartAndEndDates?.to?.toISOString()
-  
   const formatStartDate = startDate
-    ? format(startDate, "d' de 'LLLL", {locale:ptBR})
+    ? format(startDate, "d' de 'LLLL", { locale: ptBR })
     : null;
   const formatEndDate = endDate
-    ? format(endDate, "d' de 'LLLL", {locale:ptBR})
+    ? format(endDate, "d' de 'LLLL", { locale: ptBR })
     : null;
 
   return (
@@ -49,9 +46,7 @@ export function ConfirmTripModal({
           </div>
           <p className="text-sm text-zinc-400">
             Para concluir a criação da viagem para{" "}
-            <span className="text-zinc-100 font-semibold">
-              {destination}
-            </span>{" "}
+            <span className="text-zinc-100 font-semibold">{destination}</span>{" "}
             nas datas de{" "}
             <span className="text-zinc-100 font-semibold">
               {formatStartDate} a {formatEndDate}{" "}
@@ -87,7 +82,6 @@ export function ConfirmTripModal({
           </Button>
         </form>
       </div>
-      
     </div>
   );
 }

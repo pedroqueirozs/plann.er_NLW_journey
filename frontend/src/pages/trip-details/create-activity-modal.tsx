@@ -3,6 +3,7 @@ import { Button } from "../../components/button";
 import { FormEvent } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../lib/axios";
+import { toast } from "react-toastify";
 
 interface CreateActivityModalProps {
   closeCreateActivityModalOpen: () => void;
@@ -14,6 +15,9 @@ export function CreateActivityModal({
   const { tripId } = useParams();
   async function createActivity(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    function successNotification() {
+      toast.success("Atividade criada com sucesso!");
+    }
 
     const data = new FormData(event.currentTarget);
 
@@ -24,7 +28,8 @@ export function CreateActivityModal({
       title,
       occurs_at,
     });
-    window.document.location.reload();
+    window.location.reload();
+    successNotification();
   }
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">

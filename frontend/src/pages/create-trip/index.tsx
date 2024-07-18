@@ -7,8 +7,7 @@ import { DestinationAndDateStep } from "./steps/destination-and-date-step";
 import { InviteGuestsStep } from "./steps/invite-guest-step";
 import { DateRange } from "react-day-picker";
 import { api } from "../../lib/axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
 
 export function CreateTripPage() {
   const navigate = useNavigate();
@@ -69,6 +68,9 @@ export function CreateTripPage() {
     setEmailsToInvite(newEmailList);
   }
   async function createTrip(event: FormEvent<HTMLFormElement>) {
+    function sucessNotify() {
+      toast.success("Viagem criada com sucesso!");
+    }
     event.preventDefault();
 
     if (!destination) {
@@ -92,12 +94,9 @@ export function CreateTripPage() {
     });
 
     const { tripId } = response.data;
-  notify()
     navigate(`/trips/${tripId}`);
-
+    sucessNotify();
   }
-  const notify = () => toast("Wow so easy !");
-
 
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
@@ -158,8 +157,6 @@ export function CreateTripPage() {
           destination={destination}
         />
       )}
-       <ToastContainer />
     </div>
-    
   );
 }
