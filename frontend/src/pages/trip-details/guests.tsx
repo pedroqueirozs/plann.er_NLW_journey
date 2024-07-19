@@ -1,5 +1,4 @@
 import { CheckCircle2, CircleDashed, UserCog } from "lucide-react";
-import { Button } from "../../components/button";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../lib/axios";
@@ -10,7 +9,6 @@ interface Participant {
   name: string | null;
   is_confirmed: boolean;
 }
-
 export function Guests() {
   const { tripId } = useParams();
   const [participants, setParticipants] = useState<Participant[]>([]);
@@ -19,6 +17,7 @@ export function Guests() {
       .get(`/trips/${tripId}/participants`)
       .then((response) => setParticipants(response.data.participants));
   }, [tripId]);
+  console.log(participants)
   return (
     <div className="space-y-6">
       <h2 className="font-semibold text-xl">Convidados</h2>
@@ -47,11 +46,6 @@ export function Guests() {
           );
         })}
       </div>
-
-      <Button variant="secondary" size="full">
-        <UserCog className="size-5" />
-        Gerenciar convidados
-      </Button>
     </div>
   );
 }

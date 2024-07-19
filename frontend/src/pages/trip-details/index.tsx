@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react";
+import { Plus, UserCog } from "lucide-react";
 import { useState } from "react";
 import { CreateActivityModal } from "./create-activity-modal";
 import { ImportantLinks } from "./important-links";
@@ -7,24 +7,32 @@ import { Activities } from "./activities";
 import { DestinationAndDateHeader } from "./destination-and-date-header";
 import { CreateImportantLinkModal } from "./create-important-links-modal";
 import { Button } from "../../components/button";
+import { CreateGuestsModal } from "./create-guests-modal";
 
 export function TripDetailsPage() {
   const [isCreateActivityModalOpen, setCreateActivityModalOpen] =
     useState(false);
-    const [isCreateImportantLinkModal, setCreateImportantLinkModal]= useState(false)
+  const [isCreateImportantLinkModal, setCreateImportantLinkModal] = useState(false)
+  const [isCreateGuestsModal, setIsCreateGuestsModal] = useState(false)
 
-    function openCreateImportantLinkModal() {
-      setCreateImportantLinkModal(true);
-    }
-    function closeCreateImportantLinkModal() {
-      setCreateImportantLinkModal(false);
-    }
+  function openCreateImportantLinkModal() {
+    setCreateImportantLinkModal(true);
+  }
+  function closeCreateImportantLinkModal() {
+    setCreateImportantLinkModal(false);
+  }
 
   function openCreateActivityModalOpen() {
     setCreateActivityModalOpen(true);
   }
   function closeCreateActivityModalOpen() {
     setCreateActivityModalOpen(false);
+  }
+  function openCreateGuestsModal() {
+    setIsCreateGuestsModal(true);
+  }
+  function closeCreateGuestsModal() {
+    setIsCreateGuestsModal(false);
   }
 
   return (
@@ -45,15 +53,19 @@ export function TripDetailsPage() {
           <Activities />
         </div>
         <div className="w-80 space-y-6">
-        <h2 className="font-semibold text-xl">Links importantes </h2>
-          <ImportantLinks
-             />
-        <Button onClick={openCreateImportantLinkModal} variant="secondary" size="full">
-         <Plus className="size-5" />
-         Cadastrar novo link
-       </Button>
+          <h2 className="font-semibold text-xl">Links importantes </h2>
+          <ImportantLinks />
+          <Button onClick={openCreateImportantLinkModal} variant="secondary" size="full">
+            <Plus className="size-5" />
+            Cadastrar novo link
+          </Button>
           <div className="w-full h-px bg-zinc-800" />
           <Guests />
+
+          <Button onClick={openCreateGuestsModal} variant="secondary" size="full">
+            <UserCog className="size-5" />
+            Gerenciar convidados
+          </Button>
         </div>
       </main>
       {isCreateActivityModalOpen && (
@@ -61,10 +73,16 @@ export function TripDetailsPage() {
           closeCreateActivityModalOpen={closeCreateActivityModalOpen}
         />
       )}
-        {isCreateImportantLinkModal &&(
+      {isCreateImportantLinkModal && (
         <CreateImportantLinkModal
-        closeCreateImportantLinkModal ={closeCreateImportantLinkModal}
-       
+          closeCreateImportantLinkModal={closeCreateImportantLinkModal}
+
+        />
+      )}
+      {isCreateGuestsModal && (
+        <CreateGuestsModal
+          closeCreateGuestsModal={closeCreateGuestsModal}
+
         />
       )}
     </div>
