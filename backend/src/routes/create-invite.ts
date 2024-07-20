@@ -50,7 +50,7 @@ export async function createInvite(app: FastifyInstance) {
       const message = await mail.sendMail({
         from: {
           name: 'Equipe plann.er',
-          address: 'oi@plann.er',
+          address: 'douglas.333.goncalves@mail.com',
         },
         to: participant.email,
         subject: `Confirme sua presença na viagem para ${trip.destination} em ${formattedStartDate}`,

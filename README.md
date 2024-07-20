@@ -30,28 +30,35 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - TypeScript
 - Tailwind
 - Node JS
+- Toastify - Notificações
+- Lucide - Icones
+- Date Fns - Formatação das datas
+- React Day Picker - Calendarios
 
 <strong>BACKEND</strong>
 
 - Node JS
 - Prisma
+- Axios - API, conecção com o Backend
+- Fastify - Rotas
 
 ## 💻 Projeto
 
-O projeto consiste em um sistema em que pode ser criado todo o planejamento de atividades de uma viagem. O usuario pode inserir o local da viagem; definir a data de inicio e data de fim; inserir convidados e listar atividades para desenvolver em cada dia.
+O projeto consiste em um sistema que cria todo o planejamento de atividades de uma viagem. O usuario pode inserir o local da viagem; definir a data de inicio e data de fim; inserir convidados e listar atividades para desenvolver em cada dia.
 
 ## 💻 Usage
 
 <strong>BACKEND</strong>
 
-1.                              Instale as depedencias do NodeJs: npm install
-2.                              Start a API do servidor nodejs: npm run dev
-3.                              Documentação da API: https://nlw-journey.apidocumentation.com/reference
+1.                                    Instale as depedencias do NodeJs: npm install
+2.                                    Crie um arquivo .env ( DATABASE_URL="file:./dev.db"  API_BASE_URL="http://localhost:3333"  WEB_BASE_URL="http://localhost:3000"  PORT="3333" )
+3.                                    Start a API do servidor nodejs: npm run dev
+4.                                    Documentação da API: https://nlw-journey.apidocumentation.com/reference
 
 <strong>FRONTEND</strong>
 
-1.                              Instale as depedencias: npm install
-2.                              Inicialize o projeto localmente: npm run dev
+1.                                    Instale as depedencias: npm install
+2.                                    Inicialize o projeto localmente: npm run dev
 
 ## 🔖 Layout
 

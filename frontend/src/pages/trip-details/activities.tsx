@@ -21,7 +21,6 @@ export function Activities() {
       .get(`/trips/${tripId}/activities`)
       .then((response) => setActivities(response.data.activities));
   }, [tripId]);
-  
 
   return (
     <div className="space-y-8">
@@ -40,7 +39,7 @@ export function Activities() {
               <div>
                 {category.activities.map((activity) => {
                   return (
-                    <div key={activity.id} className="space-y-2.5">
+                    <div key={activity.id} className="mb-1">
                       <div className="px-4 py-2.5 bg-zinc-900 rounded-xl shadow-shape flex items-center  gap-2">
                         <CircleCheck className="size-5 text-lime-300" />
                         <span className="text-zinc-100">{activity.title}</span>
@@ -60,7 +59,6 @@ export function Activities() {
           </div>
         );
       })}
- 
     </div>
   );
 }

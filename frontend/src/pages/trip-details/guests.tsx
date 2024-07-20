@@ -17,7 +17,7 @@ export function Guests() {
       .get(`/trips/${tripId}/participants`)
       .then((response) => setParticipants(response.data.participants));
   }, [tripId]);
-  console.log(participants)
+
   return (
     <div className="space-y-6">
       <h2 className="font-semibold text-xl">Convidados</h2>
